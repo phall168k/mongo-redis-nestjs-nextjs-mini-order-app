@@ -22,6 +22,14 @@ async function bootstrap() {
       },
     }),
   );
+  app.enableCors({
+    origin: (process.env.API_ORIGINS ?? 'http://localhost:3000')
+      .split(',')
+      .map((origin) => origin.trim())
+      .filter(Boolean),
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  });
   setupSwagger(app);
   await app.listen(process.env.API_PORT ?? 8000);
 }
