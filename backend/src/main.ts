@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
+import { UnprocessableEntityException, ValidationPipe, VersioningType } from '@nestjs/common';
 import { setupSwagger } from './swagger';
 
 async function bootstrap() {
@@ -29,6 +29,9 @@ async function bootstrap() {
       .filter(Boolean),
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
+  });
+  app.enableVersioning({
+    type: VersioningType.URI,
   });
   setupSwagger(app);
   await app.listen(process.env.API_PORT ?? 8000);
