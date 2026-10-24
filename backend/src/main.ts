@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -8,6 +8,17 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true,
+      exceptionFactory: (errors) => {
+        const formattedErrors = errors.map((err) => ({
+          field: err.property,
+          errors: Object.values(err.constraints ?? {}),
+        }));
+        return new UnprocessableEntityException({
+          message: 'Unexceptable Entity',
+          statusCode: 422,
+          errors: formattedErrors,
+        });
+      },
     }),
   )
   await app.listen(process.env.API_PORT ?? 8000);
