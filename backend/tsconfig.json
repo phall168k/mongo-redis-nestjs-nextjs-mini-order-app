@@ -14,6 +14,13 @@
     "types": ["node", "jest"],
     "sourceMap": true,
     "outDir": "./dist",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@admin/*": ["./src/modules/admin/*"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@system/*": ["./src/modules/admin/system/*"],
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strict": true,
