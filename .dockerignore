@@ -1,0 +1,45 @@
+# Dependencies (install inside the image using the committed lockfile)
+**/node_modules
+**/.npm
+**/.pnpm-store
+**/.yarn/cache
+**/.yarn/unplugged
+
+# NestJS and Next.js build output
+**/dist
+**/build
+**/.next
+**/out
+**/.turbo
+**/*.tsbuildinfo
+
+# Test coverage and caches
+**/coverage
+**/.nyc_output
+**/.cache
+**/.eslintcache
+**/.stylelintcache
+
+# Local environment files (keep example templates)
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+
+# Logs and temporary files
+**/*.log
+**/tmp
+**/temp
+**/*.tmp
+**/*.swp
+**/*.swo
+
+# Version control, editor settings, and local tooling
+**/.git
+**/.idea
+**/.vscode
+**/.DS_Store
+**/Thumbs.db
+.agents
+.codex
+.aws
